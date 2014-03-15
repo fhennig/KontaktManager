@@ -13,9 +13,9 @@ import kontaktmngr.model.Person;
 public class Connection
 {
 	private static Connection _instance;
-	private static String _host;
-	private static String _user;
-	private static String _password;
+	private String _host;
+	private String _user;
+	private String _password;
 	
 	public static Connection getInstance()
 	{
@@ -43,7 +43,7 @@ public class Connection
 					_user, _password);
 	}
 	
-	private List<Person> getPersonsFirstData() throws SQLException
+	public List<Person> getPersonsFirstData() throws SQLException
 	{
 		open();
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -51,20 +51,11 @@ public class Connection
 		List<Person> result = new ArrayList<Person>();
 		while (rs.next()) {
 			Person person = new Person(rs.getInt(1));
-			person.set_forename(rs.getString(2));
-			person.set_surname(rs.getString(3));
+			person.setForename(rs.getString(2));
+			person.setSurname(rs.getString(3));
 			result.add(person);
 		}
 		connection.close();
 		return result;
-	}
-	
-	public static void main(String[] args) throws SQLException {
-		Connection c = Connection.getInstance();
-		List<Person> persons = c.getPersonsFirstData();
-		for (Person person : persons) {
-			System.out.println(person);
-		}
-	}
-	
+	}	
 }

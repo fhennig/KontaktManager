@@ -4,7 +4,7 @@ public class Entity
 {
 	private final int _id;
 	private String _description;
-	
+	private ChangeState _state; //TODO
 	
 	
 	public Entity(int id)

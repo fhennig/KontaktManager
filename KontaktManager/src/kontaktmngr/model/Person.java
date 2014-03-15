@@ -9,62 +9,82 @@ public class Person extends Entity
 	private final List<Adress> _adresses = new ArrayList<>();
 	private final List<Phone> _phones = new ArrayList<>();
 	private final List<Identification> _identifications = new ArrayList<>();
-	private final List<Person> _relationships = new ArrayList<>();
-	//List Category
-	//Person fields
-	//gender: char oder boolean?
+	private final List<Relationship> _relationships = new ArrayList<>();
+	private final List<Category> _categories = new ArrayList<>();
+
 	private String _title;
 	private String _forename;
 	private String _surname;
 	private String _nickname;
 	private Calendar _birthday;
-	
+	private char _gender;
+
 	public Person(int id)
 	{
 		super(id);
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubkjklsjdfkl
 	}
 
-	public String get_title() {
+	public String getTitle()
+	{
 		return _title;
 	}
 
-	public void set_title(String _title) {
-		this._title = _title;
+	public void setTitle(String title)
+	{
+		_title = title;
 	}
 
-	public String get_forename() {
+	public String getForename()
+	{
 		return _forename;
 	}
 
-	public void set_forename(String _forename) {
-		this._forename = _forename;
+	public void setForename(String forename)
+	{
+		_forename = forename;
 	}
 
-	public String get_surname() {
+	public String getSurname()
+	{
 		return _surname;
 	}
 
-	public void set_surname(String _surname) {
-		this._surname = _surname;
+	public void setSurname(String surname)
+	{
+		_surname = surname;
 	}
 
-	public String get_nickname() {
+	public String getNickname()
+	{
 		return _nickname;
 	}
 
-	public void set_nickname(String _nickname) {
-		this._nickname = _nickname;
+	public void setNickname(String nickname)
+	{
+		_nickname = nickname;
 	}
 
-	public Calendar get_birthday() {
+	public Calendar getBirthday()
+	{
 		return _birthday;
 	}
 
-	public void set_birthday(Calendar _birthday) {
-		this._birthday = _birthday;
+	public void setBirthday(Calendar birthday)
+	{
+		_birthday = birthday;
 	}
-	
+
+	public char getGender()
+	{
+		return _gender;
+	}
+
+	public void setGender(char gender)
+	{
+		_gender = gender;
+	}
+
 	public String toString()
 	{
 		return getId() + ": " + _forename + " " + _surname;
