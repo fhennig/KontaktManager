@@ -7,6 +7,7 @@ public class Entity
 	private ChangeState _state; //TODO
 	
 	
+	
 	public Entity(int id)
 	{
 		_id = id;

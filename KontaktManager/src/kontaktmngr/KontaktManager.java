@@ -4,28 +4,54 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kontaktmngr.dal.Connection;
-import kontaktmngr.model.Person;
+import javax.swing.JOptionPane;
+
+import kontaktmngr.dal.DALManager;
+import kontaktmngr.dal.DatabaseCredentials;
+import kontaktmngr.model.PersonDefault;
 
 /**
  * This class contains only the main method.
  */
 public class KontaktManager
 {
+	private static DALManager _dalManager;
+
+	public static DALManager getDALManager()
+	{
+		return _dalManager;
+	}
+
 	public static void main(String[] args)
 	{
-		Connection c = Connection.getInstance();
-		List<Person> persons = new ArrayList<>();
-		try
+		boolean connectionEstablished = false;
+		
+		while (!connectionEstablished)
 		{
-			persons = c.getPersonsFirstData();
-		} catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String host = JOptionPane.showInputDialog("Server-IP");
+			String user = JOptionPane.showInputDialog("Username");
+			String password = JOptionPane.showInputDialog("Password");
+
+			DatabaseCredentials dbCred = new DatabaseCredentials(host, user,
+					password);
+
+			try
+			{
+				_dalManager = new DALManager(dbCred);
+				connectionEstablished = true;
+			} catch (SQLException ignored) { JOptionPane.showMessageDialog(null, "Database connection failed!");}
 		}
-		for (Person person : persons) {
-			System.out.println(person);
-		}
+		// List<Person> persons = new ArrayList<>();
+		// try
+		// {
+		// persons = c.getPersonsFirstData();
+		// } catch (SQLException e)
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// for (Person person : persons) {
+		// System.out.println(person);
+		// }
 	}
 }
