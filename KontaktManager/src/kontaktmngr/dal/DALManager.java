@@ -23,11 +23,6 @@ public class DALManager
 		_dbCred = dbCred;
 		
 		getOpenConnnection().close(); //Test the credentials
-		
-		//Einfachheitshalber...
-		_host = JOptionPane.showInputDialog("Server-IP");
-		_user = JOptionPane.showInputDialog("Username");
-		_password = JOptionPane.showInputDialog("Password");
 	}
 	
 	/**

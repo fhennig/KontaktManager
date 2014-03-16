@@ -3,6 +3,7 @@ package kontaktmngr;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javax.swing.JOptionPane;
 
@@ -21,7 +22,7 @@ public class KontaktManager
 	{
 		return _dalManager;
 	}
-
+	
 	public static void main(String[] args)
 	{
 		boolean connectionEstablished = false;
