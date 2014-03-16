@@ -2,21 +2,14 @@ package kontaktmngr.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import kontaktmngr.model.PersonDefault;
 
 public class DALManager
 {
-	private String _host;
-	private String _user;
-	private String _password;
-	private DatabaseCredentials _dbCred;
+	private final DatabaseCredentials _dbCred;
+	private final PersonLoader _personLoader = new PersonLoader();
+	
+	
 	
 	public DALManager(DatabaseCredentials dbCred) throws SQLException
 	{
@@ -25,10 +18,15 @@ public class DALManager
 		getOpenConnnection().close(); //Test the credentials
 	}
 	
-	/**
-	 * Returns an open connection. The connection should be closed after usage.
-	 */
-	private Connection getOpenConnnection() throws SQLException
+	
+	
+	public PersonLoader getPersonLoader()
+	{
+		return _personLoader;
+	}
+	
+	/** Returns an open connection. The connection should be closed after usage. */
+	public Connection getOpenConnnection() throws SQLException
 	{
 			Connection connection = DriverManager.getConnection(
 					"jdbc:postgresql://" + _dbCred.getHost() + ":5432/Kontaktmngr",

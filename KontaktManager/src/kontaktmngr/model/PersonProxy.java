@@ -75,18 +75,4 @@ public class PersonProxy implements Person
 		
 	}
 
-	@Override
-	public char getGender()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setGender(char gender)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 }

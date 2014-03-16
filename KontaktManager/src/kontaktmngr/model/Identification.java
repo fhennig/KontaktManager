@@ -1,6 +1,6 @@
 package kontaktmngr.model;
 
-public class Identification extends Entity
+public class Identification extends DefaultEntity
 {
 	private final String _type;
 	private String _identification;

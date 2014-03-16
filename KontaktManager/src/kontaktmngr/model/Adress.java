@@ -1,6 +1,6 @@
 package kontaktmngr.model;
 
-public class Adress extends Entity
+public class Adress extends DefaultEntity
 {
 	private String _street;
 	private int _housenumber;

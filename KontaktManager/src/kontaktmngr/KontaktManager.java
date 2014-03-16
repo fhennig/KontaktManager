@@ -1,15 +1,11 @@
 package kontaktmngr;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 
 import javax.swing.JOptionPane;
 
 import kontaktmngr.dal.DALManager;
 import kontaktmngr.dal.DatabaseCredentials;
-import kontaktmngr.model.PersonDefault;
 
 /**
  * This class contains only the main method.

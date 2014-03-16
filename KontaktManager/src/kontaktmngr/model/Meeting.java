@@ -1,6 +1,6 @@
 package kontaktmngr.model;
 
-public class Meeting extends Entity
+public class Meeting extends DefaultEntity
 {
 
 	public Meeting(int id)

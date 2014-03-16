@@ -1,6 +1,6 @@
 package kontaktmngr.model;
 
-public class Category extends Entity
+public class Category extends DefaultEntity
 {
 
 	public Category(int id)

@@ -1,32 +1,14 @@
 package kontaktmngr.model;
 
-public class Entity
+import javafx.beans.property.StringProperty;
+
+public interface Entity
 {
-	private final int _id;
-	private String _description;
-	private ChangeState _state; //TODO
+	public ChangeState getChangeState();
 	
+	public int getId();
 	
-	
-	public Entity(int id)
-	{
-		_id = id;
-	}
-	
-	
-	
-	public int getId()
-	{
-		return _id;
-	}
-	
-	public String getDescription()
-	{
-		return _description;
-	}
-	
-	public void setDescription(String description)
-	{
-		_description = description;
-	}
+	public String getDescription();
+	public void setDescription(String description);
+	public StringProperty descriptionProperty();
 }

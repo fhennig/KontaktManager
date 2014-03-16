@@ -2,7 +2,7 @@ package kontaktmngr.model2;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import kontaktmngr.dal.PersonLoader;
+import kontaktmngr.KontaktManager;
 
 public class Person
 {
@@ -32,7 +32,7 @@ public class Person
 	{
 		if (_name == null)
 		{
-			PersonLoader.getInstance().initName(this);
+			KontaktManager.getDALManager().getPersonLoader().initName(this);
 		}
 		return _name.get();
 	}

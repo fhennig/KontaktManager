@@ -1,6 +1,6 @@
 package kontaktmngr.model;
 
-public class Phone extends Entity
+public class Phone extends DefaultEntity
 {
 	private long _number;
 	
