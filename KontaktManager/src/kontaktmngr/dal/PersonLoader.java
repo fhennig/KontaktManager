@@ -1,4 +1,6 @@
-package kontaktmngr.model2;
+package kontaktmngr.dal;
+
+import kontaktmngr.model2.Person;
 
 
 public class PersonLoader
