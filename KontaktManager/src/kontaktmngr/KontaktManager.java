@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import kontaktmngr.dal.DALManager;
 import kontaktmngr.dal.DatabaseCredentials;
+import kontaktmngr.model.Category;
 
 /**
  * This class contains only the main method.
@@ -19,7 +20,7 @@ public class KontaktManager
 		return _dalManager;
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws SQLException
 	{
 		boolean connectionEstablished = false;
 		
@@ -37,6 +38,11 @@ public class KontaktManager
 				_dalManager = new DALManager(dbCred);
 				connectionEstablished = true;
 			} catch (SQLException ignored) { JOptionPane.showMessageDialog(null, "Database connection failed!");}
+			
+			
+			//Test: Kategorienübersicht
+			Category c = getDALManager().getCategoryLoader().loadAll();
+			System.out.println(c.getDescription());
 		}
 		// List<Person> persons = new ArrayList<>();
 		// try

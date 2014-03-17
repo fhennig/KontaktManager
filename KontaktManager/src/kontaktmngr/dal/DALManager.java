@@ -8,7 +8,7 @@ public class DALManager
 {
 	private final DatabaseCredentials _dbCred;
 	private final PersonLoader _personLoader = new PersonLoader();
-	
+	private final CategoryLoader _categoryLoader = new CategoryLoader();
 	
 	
 	public DALManager(DatabaseCredentials dbCred) throws SQLException
@@ -23,6 +23,11 @@ public class DALManager
 	public PersonLoader getPersonLoader()
 	{
 		return _personLoader;
+	}
+	
+	public CategoryLoader getCategoryLoader()
+	{
+		return _categoryLoader;
 	}
 	
 	/** Returns an open connection. The connection should be closed after usage. */
