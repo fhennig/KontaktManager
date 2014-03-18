@@ -6,7 +6,6 @@ public class DefaultEntity implements Entity
 {
 	private final int _id;
 	private StringProperty _description;
-	private ChangeState _state; //TODO
 	
 	
 	
@@ -16,9 +15,7 @@ public class DefaultEntity implements Entity
 	}
 
 
-
-	@Override public ChangeState getChangeState() { return _state; }
-
+	
 	@Override public int getId() { return _id; }
 
 	@Override public String getDescription() { return _description.get(); }
