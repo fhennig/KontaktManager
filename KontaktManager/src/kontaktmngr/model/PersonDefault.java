@@ -30,14 +30,21 @@ public class PersonDefault extends DefaultEntity implements Person
 	//TODO avatar-id
 	
 	
-	public PersonDefault(int id)
+	public PersonDefault(int id,
+			String title,
+			String forename,
+			String surname,
+			String nickname,
+			Calendar birthday,
+			String gender)
 	{
 		super(id);
+		initBasics(title, forename, surname, nickname, birthday, gender);
 	}
 
 	
 	
-	public void initBasics(String title,
+	private void initBasics(String title,
 			String forename,
 			String surname,
 			String nickname,
@@ -52,7 +59,7 @@ public class PersonDefault extends DefaultEntity implements Person
 		_gender = new SimpleStringProperty(this, "Gender", gender);
 	}
 	
-	public void initRest( List<Adress> adresses, 
+	public void initLists( List<Adress> adresses, 
 			List<Phone> phones,
 			List<Identification> identifications, 
 			List<Category> categories,
@@ -89,8 +96,6 @@ public class PersonDefault extends DefaultEntity implements Person
 	@Override public ReadOnlyListProperty<Category> categoriesProperty() { return _categories; }
 	
 	@Override public ReadOnlyListProperty<Relationship> relationshipsProperty() { return _relationships; }
-	
-	//TODO List Properties with write-access for the PersonLoader to add items
 
 	
 	@Override

@@ -11,6 +11,7 @@ public class PersonProxy implements Person
 {
 	private Person _originalPerson = null;
 	private final int _personId;
+	private boolean _initializationValidated = false;
 	
 	
 	
@@ -19,12 +20,31 @@ public class PersonProxy implements Person
 		_personId = personId;
 	}
 	
+	
+	
 	private Person getOriginalPerson()
 	{
 		if (_originalPerson == null)
 			_originalPerson = DALManager.getInstance().getPersonLoader().getPerson(_personId);
 		
 		return _originalPerson;
+	}
+	
+	/**
+	 * This method is to be called if a ListProperty is requested.
+	 * It checks if the list properties are uninitialized and if that is the case,
+	 * it initializes them.
+	 */
+	private void validateListsAreInitialized()
+	{
+		if (_initializationValidated)
+			return;
+		
+		if (_originalPerson.adressesProperty() == null) //check for any list property if it is null
+		{
+			DALManager.getInstance().getPersonLoader().loadLists(_personId);
+			_initializationValidated = true;
+		}
 	}
 	
 	@Override
@@ -36,84 +56,84 @@ public class PersonProxy implements Person
 	@Override
 	public StringProperty descriptionProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return getOriginalPerson().descriptionProperty();
 	}
 
 	@Override
 	public StringProperty titleProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return getOriginalPerson().titleProperty();
 	}
 
 	@Override
 	public StringProperty forenameProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return getOriginalPerson().forenameProperty();
 	}
 
 	@Override
 	public StringProperty surnameProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return getOriginalPerson().surnameProperty();
 	}
 
 	@Override
 	public StringProperty nicknameProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return getOriginalPerson().nicknameProperty();
 	}
 
 	@Override
 	public ObjectProperty<Calendar> birthdayProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return getOriginalPerson().birthdayProperty();
 	}
 
 	@Override
 	public StringProperty genderProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return getOriginalPerson().genderProperty();
 	}
 
 	@Override
 	public ReadOnlyListProperty<Adress> adressesProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		validateListsAreInitialized();
+		return getOriginalPerson().adressesProperty();
+		
 	}
 
 	@Override
 	public ReadOnlyListProperty<Phone> phonesProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		validateListsAreInitialized();
+		return getOriginalPerson().phonesProperty();
 	}
 
 	@Override
 	public ReadOnlyListProperty<Identification> identificationsProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		validateListsAreInitialized();
+		return getOriginalPerson().identificationsProperty();
 	}
 
 	@Override
 	public ReadOnlyListProperty<Category> categoriesProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		validateListsAreInitialized();
+		return getOriginalPerson().categoriesProperty();
 	}
 
 	@Override
 	public ReadOnlyListProperty<Relationship> relationshipsProperty()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		validateListsAreInitialized();
+		return getOriginalPerson().relationshipsProperty();
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "PersonProxy for: " + getOriginalPerson().toString();
 	}
 }
