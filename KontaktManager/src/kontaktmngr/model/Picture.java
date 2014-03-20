@@ -1,8 +1,12 @@
 package kontaktmngr.model;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +20,7 @@ import kontaktmngr.dal.DatabaseCredentials;
 public class Picture {
 	
 	//Test..
-	public static void main(String[] args) throws SQLException, FileNotFoundException {
+	public static void main(String[] args) throws SQLException, IOException {
 		boolean connectionEstablished = false;
 		
 		while (!connectionEstablished)
@@ -44,7 +48,18 @@ public class Picture {
 		ps.setBinaryStream(1, in, file.length());
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		System.out.println(rs.getInt(1));
+		System.out.println(rs.getInt(1)); //id des Bildes.
+		
+		//Bild laden.
+		rs = conn.createStatement().executeQuery("select id, picture from pictures;");
+		while(rs.next()){
+			byte[] buff = rs.getBytes(2);
+			//b.getBinaryStream();
+			FileOutputStream out = new FileOutputStream("C:\\Users\\Chaoran\\Desktop\\tmp\\" + rs.getInt(1) + ".jpg");
+			out.write(buff);
+			out.close();
+		}
+		
 		conn.close();
 	}
 	
