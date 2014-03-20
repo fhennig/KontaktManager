@@ -4,31 +4,46 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * This class is a singleton, but it does not use lazy initialization,
+ * it needs to be initialized via the static init(..) method.
+ *
+ */
 public class DALManager
 {
+	private static DALManager _instance = null;
+	
 	private final DatabaseCredentials _dbCred;
 	private final PersonLoader _personLoader = new PersonLoader();
 	private final CategoryLoader _categoryLoader = new CategoryLoader();
 	
 	
-	public DALManager(DatabaseCredentials dbCred) throws SQLException
+	
+	private DALManager(DatabaseCredentials dbCred) { _dbCred = dbCred; }
+	
+	public static void init(DatabaseCredentials dbCred) throws SQLException
 	{
-		_dbCred = dbCred;
+		if (_instance != null)
+			return; //already initialized
 		
-		getOpenConnnection().close(); //Test the credentials
+		//Test if credentials are valid; throws SQLException
+		Connection connection = DriverManager.getConnection(
+				"jdbc:postgresql://" + dbCred.getHost() + ":5432/Kontaktmngr",
+				dbCred.getUser(), dbCred.getPassword());
+		connection.close();
+		
+		_instance = new DALManager(dbCred);
 	}
 	
-	
-	
-	public PersonLoader getPersonLoader()
+	public static DALManager getInstance()
 	{
-		return _personLoader;
+		if (_instance == null)
+			throw new NullPointerException("DALManager was not initialized!");
+		
+		return _instance;
 	}
 	
-	public CategoryLoader getCategoryLoader()
-	{
-		return _categoryLoader;
-	}
+
 	
 	/** Returns an open connection. The connection should be closed after usage. */
 	public Connection getOpenConnnection() throws SQLException
@@ -39,19 +54,13 @@ public class DALManager
 			return connection;
 	}
 	
-//	public List<Person> getPersonsFirstData() throws SQLException
-//	{
-//		open();
-//		ResultSet rs = connection.createStatement().executeQuery(
-//				"select id, forename, surname from persons order by forename;");
-//		List<Person> result = new ArrayList<Person>();
-//		while (rs.next()) {
-//			Person person = new Person(rs.getInt(1));
-//			person.setForename(rs.getString(2));
-//			person.setSurname(rs.getString(3));
-//			result.add(person);
-//		}
-//		connection.close();
-//		return result;
-//	}	
+	public PersonLoader getPersonLoader()
+	{
+		return _personLoader;
+	}
+	
+	public CategoryLoader getCategoryLoader()
+	{
+		return _categoryLoader;
+	}	
 }

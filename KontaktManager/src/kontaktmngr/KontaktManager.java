@@ -12,14 +12,7 @@ import kontaktmngr.model.Category;
  * This class contains only the main method.
  */
 public class KontaktManager
-{
-	private static DALManager _dalManager;
-
-	public static DALManager getDALManager()
-	{
-		return _dalManager;
-	}
-	
+{	
 	public static void main(String[] args) throws SQLException
 	{
 		boolean connectionEstablished = false;
@@ -35,26 +28,14 @@ public class KontaktManager
 
 			try
 			{
-				_dalManager = new DALManager(dbCred);
+				DALManager.init(dbCred);
 				connectionEstablished = true;
 			} catch (SQLException ignored) { JOptionPane.showMessageDialog(null, "Database connection failed!");}
 			
 			
 			//Test: Kategorienübersicht
-			Category c = getDALManager().getCategoryLoader().loadAll();
-			System.out.println(c.getDescription());
+			Category c = DALManager.getInstance().getCategoryLoader().loadAll();
+			System.out.println(c.descriptionProperty().get());
 		}
-		// List<Person> persons = new ArrayList<>();
-		// try
-		// {
-		// persons = c.getPersonsFirstData();
-		// } catch (SQLException e)
-		// {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// for (Person person : persons) {
-		// System.out.println(person);
-		// }
 	}
 }

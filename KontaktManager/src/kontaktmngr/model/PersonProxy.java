@@ -3,100 +3,34 @@ package kontaktmngr.model;
 import java.util.Calendar;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.StringProperty;
+import kontaktmngr.dal.DALManager;
 
 public class PersonProxy implements Person
 {
-
-	@Override
-	public String getTitle()
+	private Person _originalPerson = null;
+	private final int _personId;
+	
+	
+	
+	public PersonProxy(int personId)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		_personId = personId;
 	}
-
-	@Override
-	public void setTitle(String title)
+	
+	private Person getOriginalPerson()
 	{
-		// TODO Auto-generated method stub
+		if (_originalPerson == null)
+			_originalPerson = DALManager.getInstance().getPersonLoader().getPerson(_personId);
 		
+		return _originalPerson;
 	}
-
-	@Override
-	public String getForename()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setForename(String forename)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getSurname()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setSurname(String surname)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getNickname()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setNickname(String nickname)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Calendar getBirthday()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setBirthday(Calendar birthday)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public int getId()
 	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String getDescription()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setDescription(String description)
-	{
-		// TODO Auto-generated method stub
-		
+		return _personId;
 	}
 
 	@Override
@@ -142,24 +76,44 @@ public class PersonProxy implements Person
 	}
 
 	@Override
-	public String getGender()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setGender(String gender)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public StringProperty genderProperty()
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public ReadOnlyListProperty<Adress> adressesProperty()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReadOnlyListProperty<Phone> phonesProperty()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReadOnlyListProperty<Identification> identificationsProperty()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReadOnlyListProperty<Category> categoriesProperty()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReadOnlyListProperty<Relationship> relationshipsProperty()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

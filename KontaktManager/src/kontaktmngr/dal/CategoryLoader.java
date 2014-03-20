@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-import kontaktmngr.KontaktManager;
 import kontaktmngr.model.Category;
 
 public class CategoryLoader {
@@ -18,7 +16,7 @@ public class CategoryLoader {
 	 */
 	public Category loadAll() throws SQLException
 	{
-		DALManager dal = KontaktManager.getDALManager();
+		DALManager dal = DALManager.getInstance();
 		Connection connection = dal.getOpenConnnection();
 		
 		//Loads root
@@ -27,7 +25,7 @@ public class CategoryLoader {
 		Category root = null;
 		if(rs.next()){
 			root = new Category(rs.getInt(1), rs.getString(2));
-			root.setDescription(rs.getString(3));
+			root.descriptionProperty().set(rs.getString(3));
 			//Loads root's children.
 			loadChildren(root, connection);
 		}
@@ -37,7 +35,7 @@ public class CategoryLoader {
 	
 	public void loadChildren(Category category) throws SQLException
 	{
-		DALManager dal = KontaktManager.getDALManager();
+		DALManager dal = DALManager.getInstance();
 		Connection connection = dal.getOpenConnnection();
 		loadChildren(category, connection);
 		connection.close();
@@ -55,7 +53,7 @@ public class CategoryLoader {
 						+ "and d.lft > f.lft " + "and d.rgt < f.rgt);");
 		while(rs.next()){
 			Category child = new Category(rs.getInt(1), rs.getString(2));
-			child.setDescription(rs.getString(3));
+			child.descriptionProperty().set(rs.getString(3));
 			loadChildren(child);
 			children.add(child);
 		}

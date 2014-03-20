@@ -7,6 +7,7 @@ import com.sun.javafx.collections.ObservableListWrapper;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,7 +19,7 @@ public class PersonDefault extends DefaultEntity implements Person
 	private ListProperty<Phone> _phones;
 	private ListProperty<Identification> _identifications;
 	private ListProperty<Category> _categories;
-	private ListProperty<Relationship> _friends;
+	private ListProperty<Relationship> _relationships;
 
 	private StringProperty _title;
 	private StringProperty _forename;
@@ -26,7 +27,7 @@ public class PersonDefault extends DefaultEntity implements Person
 	private StringProperty _nickname;
 	private ObjectProperty<Calendar> _birthday;
 	private StringProperty _gender;
-
+	//TODO avatar-id
 	
 	
 	public PersonDefault(int id)
@@ -51,51 +52,48 @@ public class PersonDefault extends DefaultEntity implements Person
 		_gender = new SimpleStringProperty(this, "Gender", gender);
 	}
 	
-	public void initFurther( List<Adress> adresses, 
+	public void initRest( List<Adress> adresses, 
 			List<Phone> phones,
 			List<Identification> identifications, 
 			List<Category> categories,
-			List<Person> friends)
+			List<Relationship> relationships)
 	{
 		_adresses = new SimpleListProperty<>(this, "Adresses", new ObservableListWrapper<>(adresses));
 		_phones = new SimpleListProperty<>(this, "Phones", new ObservableListWrapper<>(phones));
 		_identifications = new SimpleListProperty<>(this, "Identifications", new ObservableListWrapper<>(identifications));
-		initFriends(friends);
-	}
-	
-	private void initFriends(List<Person> persons)
-	{
-		
+		_categories = new SimpleListProperty<>(this, "Categories", new ObservableListWrapper<>(categories));
+		_relationships = new SimpleListProperty<>(this, "Relationships", new ObservableListWrapper<>(relationships));
 	}
 
 	
 	
-	@Override public String getTitle() { return _title.get(); }
-	@Override public void setTitle(String title) { _title.set(title); }
 	@Override public StringProperty titleProperty() { return _title; }
 
-	@Override public String getForename() { return _forename.get(); }
-	@Override public void setForename(String forename) { _forename.set(forename); }
 	@Override public StringProperty forenameProperty() { return _forename; }
 
-	@Override public String getSurname() { return _surname.get(); }
-	@Override public void setSurname(String surname) { _surname.set(surname); }
 	@Override public StringProperty surnameProperty() { return _surname; }
 
-	@Override public String getNickname() { return _nickname.get(); }
-	@Override public void setNickname(String nickname) { _nickname.set(nickname); }
 	@Override public StringProperty nicknameProperty() { return _nickname; }
 
-	@Override public Calendar getBirthday() { return _birthday.get(); }
-	@Override public void setBirthday(Calendar birthday) { _birthday.set(birthday); }
 	@Override public ObjectProperty<Calendar> birthdayProperty() { return _birthday; }
 
-	@Override public String getGender() { return _gender.get(); }
-	@Override public void setGender(String gender) { _gender.set(gender); }
 	@Override public StringProperty genderProperty() { return _gender; }
+	
+	
+	@Override public ReadOnlyListProperty<Adress> adressesProperty() { return _adresses; }
+	
+	@Override public ReadOnlyListProperty<Phone> phonesProperty() { return _phones; }
+	
+	@Override public ReadOnlyListProperty<Identification> identificationsProperty() { return _identifications; }
+	
+	@Override public ReadOnlyListProperty<Category> categoriesProperty() { return _categories; }
+	
+	@Override public ReadOnlyListProperty<Relationship> relationshipsProperty() { return _relationships; }
+	
+	//TODO List Properties with write-access for the PersonLoader to add items
 
 	
-	
+	@Override
 	public String toString()
 	{
 		return getId() + ": " + _forename + " " + _surname;
