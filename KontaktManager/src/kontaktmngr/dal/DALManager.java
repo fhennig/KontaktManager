@@ -18,6 +18,7 @@ public class DALManager
 	private final CategoryLoader _categoryLoader = new CategoryLoader();
 	private final PictureLoader _pictureLoader = new PictureLoader();
 	
+	private Connection connection;
 	
 	private DALManager(DatabaseCredentials dbCred) { _dbCred = dbCred; }
 	
@@ -45,13 +46,15 @@ public class DALManager
 	
 
 	
-	/** Returns an open connection. The connection should be closed after usage. */
+	/** Returns an open connection. */
 	public Connection getOpenConnnection() throws SQLException
 	{
-			Connection connection = DriverManager.getConnection(
+		if(connection == null || connection.isClosed()){
+			connection = DriverManager.getConnection(
 					"jdbc:postgresql://" + _dbCred.getHost() + ":5432/Kontaktmngr",
 					_dbCred.getUser(), _dbCred.getPassword());
-			return connection;
+		}
+		return connection;
 	}
 	
 	public PersonLoader getPersonLoader()

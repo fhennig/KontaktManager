@@ -16,8 +16,7 @@ public class CategoryLoader {
 	 */
 	public Category loadAll() throws SQLException
 	{
-		DALManager dal = DALManager.getInstance();
-		Connection connection = dal.getOpenConnnection();
+		Connection connection = DALManager.getInstance().getOpenConnnection();
 		
 		//Loads root
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -27,22 +26,16 @@ public class CategoryLoader {
 			root = new Category(rs.getInt(1), rs.getString(2));
 			root.descriptionProperty().set(rs.getString(3));
 			//Loads root's children.
-			loadChildren(root, connection);
+			loadChildren(root);
 		}
 		connection.close();
 		return root;
 	}
-	
+
 	public void loadChildren(Category category) throws SQLException
 	{
-		DALManager dal = DALManager.getInstance();
-		Connection connection = dal.getOpenConnnection();
-		loadChildren(category, connection);
-		connection.close();
-	}
-
-	private void loadChildren(Category category, Connection connection) throws SQLException
-	{
+		Connection connection = DALManager.getInstance().getOpenConnnection();
+		
 		ArrayList<Category> children = new ArrayList<Category>();
 		ResultSet rs = connection.createStatement().executeQuery(
 				"select c.id, c.title, c.description "
@@ -61,5 +54,4 @@ public class CategoryLoader {
 			return;
 		category.setChildren(children);
 	}
-	
 }
