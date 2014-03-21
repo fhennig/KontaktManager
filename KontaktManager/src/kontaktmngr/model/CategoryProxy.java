@@ -61,11 +61,13 @@ public class CategoryProxy implements Category{
 
 	@Override
 	public ReadOnlyListProperty<Category> childrenProperty() {
+		validateChildrenAreInitialized();
 		return getOriginalCategory().childrenProperty();
 	}
 
 	@Override
 	public ReadOnlyListProperty<Person> membersProperty() {
+		validateMembersAreInitialized();
 		return getOriginalCategory().membersProperty();
 	}
 
