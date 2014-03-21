@@ -25,7 +25,7 @@ public class PersonProxy implements Person
 	private Person getOriginalPerson()
 	{
 		if (_originalPerson == null)
-			_originalPerson = DALManager.getInstance().getPersonLoader().getPerson(_personId);
+			_originalPerson = DALManager.getInstance().getPersonLoader().get(_personId);
 		
 		return _originalPerson;
 	}
