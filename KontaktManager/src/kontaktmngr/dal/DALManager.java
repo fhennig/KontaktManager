@@ -16,7 +16,7 @@ public class DALManager
 	private final DatabaseCredentials _dbCred;
 	private final PersonLoader _personLoader = new PersonLoader();
 	private final CategoryLoader _categoryLoader = new CategoryLoader();
-	
+	private final PictureLoader _pictureLoader = new PictureLoader();
 	
 	
 	private DALManager(DatabaseCredentials dbCred) { _dbCred = dbCred; }
@@ -62,5 +62,9 @@ public class DALManager
 	public CategoryLoader getCategoryLoader()
 	{
 		return _categoryLoader;
+	}
+
+	public PictureLoader getPictureLoader() {
+		return _pictureLoader;
 	}	
 }
