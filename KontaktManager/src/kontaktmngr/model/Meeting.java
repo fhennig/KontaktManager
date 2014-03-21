@@ -3,9 +3,9 @@ package kontaktmngr.model;
 public class Meeting extends DefaultEntity
 {
 
-	public Meeting(int id)
+	public Meeting(int id, String description)
 	{
-		super(id);
+		super(id, description);
 		// TODO Auto-generated constructor stub
 	}
 

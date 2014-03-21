@@ -10,9 +10,9 @@ public class Adress extends DefaultEntity
 
 	
 	
-	public Adress(int id)
+	public Adress(int id, String description)
 	{
-		super(id);
+		super(id, description);
 	}
 
 

@@ -3,9 +3,9 @@ package kontaktmngr.model;
 public class Relationship extends DefaultEntity
 {
 
-	public Relationship(int id)
+	public Relationship(int id, String description)
 	{
-		super(id);
+		super(id, description);
 	}
 
 }

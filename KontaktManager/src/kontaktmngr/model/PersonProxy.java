@@ -9,9 +9,9 @@ import kontaktmngr.dal.DALManager;
 
 public class PersonProxy implements Person
 {
-	private Person _originalPerson = null;
+	private Person _originalPerson;
 	private final int _personId;
-	private boolean _initializationValidated = false;
+	private boolean _initializationValidated;
 	
 	
 	
@@ -43,8 +43,8 @@ public class PersonProxy implements Person
 		if (_originalPerson.adressesProperty() == null) //check for any list property if it is null
 		{
 			DALManager.getInstance().getPersonLoader().loadLists(_personId);
-			_initializationValidated = true;
 		}
+		_initializationValidated = true;
 	}
 	
 	@Override

@@ -36,9 +36,10 @@ public class PersonDefault extends DefaultEntity implements Person
 			String surname,
 			String nickname,
 			Calendar birthday,
-			String gender)
+			String gender,
+			String description)
 	{
-		super(id);
+		super(id, description);
 		initBasics(title, forename, surname, nickname, birthday, gender);
 	}
 

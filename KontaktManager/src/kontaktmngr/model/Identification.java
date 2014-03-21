@@ -7,9 +7,9 @@ public class Identification extends DefaultEntity
 	
 	
 
-	public Identification(int id, String type, String identification)
+	public Identification(int id, String type, String identification, String description)
 	{
-		super(id);
+		super(id, description);
 		_type = type;
 		_identification = identification;
 	}

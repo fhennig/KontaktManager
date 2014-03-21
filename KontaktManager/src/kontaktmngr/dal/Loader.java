@@ -3,12 +3,9 @@ package kontaktmngr.dal;
 import java.util.HashMap;
 import java.util.Map;
 
-import kontaktmngr.model.Person;
-import kontaktmngr.model.PersonDefault;
-
-public abstract class Loader<E> {
+public abstract class Loader<E, S extends E> {
 	
-	protected Map<Integer, E> _objects = new HashMap<>();
+	protected Map<Integer, S> _objects = new HashMap<>();
 	
 	public E get(int id)
 	{

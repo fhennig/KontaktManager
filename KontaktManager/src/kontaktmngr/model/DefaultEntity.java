@@ -1,5 +1,6 @@
 package kontaktmngr.model;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class DefaultEntity implements Entity
@@ -9,9 +10,10 @@ public class DefaultEntity implements Entity
 	
 	
 	
-	public DefaultEntity(int id)
+	public DefaultEntity(int id, String description)
 	{
 		_id = id;
+		_description = new SimpleStringProperty(this, "Description", description);
 	}
 
 

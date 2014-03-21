@@ -7,8 +7,8 @@ public class PictureDefault extends DefaultEntity implements Picture{
 
 	private StringProperty _filenameProperty;
 	
-	public PictureDefault(int id, String filename) {
-		super(id);
+	public PictureDefault(int id, String filename, String description) {
+		super(id, description);
 		_filenameProperty = new SimpleStringProperty(this, "Filename", filename);
 	}
 

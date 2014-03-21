@@ -6,9 +6,9 @@ public class Phone extends DefaultEntity
 	
 	
 	
-	public Phone(int id, long number)
+	public Phone(int id, long number, String description)
 	{
-		super(id);
+		super(id, description);
 		_number = number;
 	}
 

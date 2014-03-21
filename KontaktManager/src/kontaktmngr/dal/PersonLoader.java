@@ -4,14 +4,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-
 import kontaktmngr.model.Person;
 import kontaktmngr.model.PersonDefault;
 
 
-public class PersonLoader extends Loader<Person>
+public class PersonLoader extends Loader<Person, PersonDefault>
 {	
 	protected void load(int id)
 	{
@@ -25,7 +22,7 @@ public class PersonLoader extends Loader<Person>
 					birthday = Calendar.getInstance();
 					birthday.setTime(rs.getDate("birthday"));
 				}
-				_objects.put(id, new PersonDefault(id, rs.getString("title"), rs.getString("forename"), rs.getString("surname"), rs.getString("nickname"), birthday, rs.getString("gender")));
+				_objects.put(id, new PersonDefault(id, rs.getString("title"), rs.getString("forename"), rs.getString("surname"), rs.getString("nickname"), birthday, rs.getString("gender"), rs.getString("description")));
 			} else {
 				throw new IllegalArgumentException("No Person with ID=" + id + " found in Database.");
 			}
