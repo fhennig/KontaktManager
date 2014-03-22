@@ -1,5 +1,6 @@
 package kontaktmngr;
 
+import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -30,12 +31,14 @@ public class KontaktManager
 			{
 				DALManager.init(dbCred);
 				connectionEstablished = true;
-			} catch (SQLException ignored) { JOptionPane.showMessageDialog(null, "Database connection failed!");}
-			
-			
-			//Test: Kategorienübersicht
-			Category c = DALManager.getInstance().getCategoryLoader().loadAll();
-			System.out.println(c.descriptionProperty().get());
+			}
+			catch (SQLException ignored)    { JOptionPane.showMessageDialog(null, "Database connection failed!");}
+			catch (PropertyVetoException e) { JOptionPane.showMessageDialog(null, "Database driver could not be loaded!"); }
 		}
+		
+		
+		//Test: Kategorienübersicht
+		Category c = DALManager.getInstance().getCategoryLoader().loadAll();
+		System.out.println(c.descriptionProperty().get());
 	}
 }
