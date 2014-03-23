@@ -1,7 +1,6 @@
 package kontaktmngr.model;
 
-import java.util.Calendar;
-
+import java.time.LocalDate;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.StringProperty;
@@ -16,7 +15,7 @@ public interface Person extends Entity
 
 	public StringProperty nicknameProperty();
 
-	public ObjectProperty<Calendar> birthdayProperty();
+	public ObjectProperty<LocalDate> birthdayProperty();
 
 	public StringProperty genderProperty();
 	

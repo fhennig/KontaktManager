@@ -1,6 +1,6 @@
 package kontaktmngr.model;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.sun.javafx.collections.ObservableListWrapper;
@@ -25,7 +25,7 @@ public class PersonDefault extends DefaultEntity implements Person
 	private StringProperty _forename;
 	private StringProperty _surname;
 	private StringProperty _nickname;
-	private ObjectProperty<Calendar> _birthday;
+	private ObjectProperty<LocalDate> _birthday;
 	private StringProperty _gender;
 	//TODO avatar-id
 	
@@ -35,7 +35,7 @@ public class PersonDefault extends DefaultEntity implements Person
 			String forename,
 			String surname,
 			String nickname,
-			Calendar birthday,
+			LocalDate birthday,
 			String gender,
 			String description)
 	{
@@ -49,14 +49,14 @@ public class PersonDefault extends DefaultEntity implements Person
 			String forename,
 			String surname,
 			String nickname,
-			Calendar birthday,
+			LocalDate birthday,
 			String gender)
 	{
 		_title = new SimpleStringProperty(this, "Title", title);
 		_forename = new SimpleStringProperty(this, "Forename", forename);
 		_surname = new SimpleStringProperty(this, "Surname", surname);
 		_nickname = new SimpleStringProperty(this, "Nickname", nickname);
-		_birthday = new SimpleObjectProperty<Calendar>(this, "Birthday", birthday);
+		_birthday = new SimpleObjectProperty<LocalDate>(this, "Birthday", birthday);
 		_gender = new SimpleStringProperty(this, "Gender", gender);
 	}
 	
@@ -83,7 +83,7 @@ public class PersonDefault extends DefaultEntity implements Person
 
 	@Override public StringProperty nicknameProperty() { return _nickname; }
 
-	@Override public ObjectProperty<Calendar> birthdayProperty() { return _birthday; }
+	@Override public ObjectProperty<LocalDate> birthdayProperty() { return _birthday; }
 
 	@Override public StringProperty genderProperty() { return _gender; }
 	

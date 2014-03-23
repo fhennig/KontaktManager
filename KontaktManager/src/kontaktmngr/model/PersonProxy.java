@@ -1,7 +1,6 @@
 package kontaktmngr.model;
 
-import java.util.Calendar;
-
+import java.time.LocalDate;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.StringProperty;
@@ -84,7 +83,7 @@ public class PersonProxy implements Person
 	}
 
 	@Override
-	public ObjectProperty<Calendar> birthdayProperty()
+	public ObjectProperty<LocalDate> birthdayProperty()
 	{
 		return getOriginalPerson().birthdayProperty();
 	}
