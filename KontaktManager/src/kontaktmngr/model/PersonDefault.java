@@ -1,25 +1,15 @@
 package kontaktmngr.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import com.sun.javafx.collections.ObservableListWrapper;
-
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyListProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class PersonDefault extends DefaultEntity implements Person
 {
-	private ListProperty<Adress> _adresses;
-	private ListProperty<Phone> _phones;
-	private ListProperty<Identification> _identifications;
-	private ListProperty<Category> _categories;
-	private ListProperty<Relationship> _relationships;
 
 	private StringProperty _title;
 	private StringProperty _forename;
@@ -28,6 +18,8 @@ public class PersonDefault extends DefaultEntity implements Person
 	private ObjectProperty<LocalDate> _birthday;
 	private StringProperty _gender;
 	//TODO avatar-id
+	/** Contains the lazy loaded lists */
+	private AdditionalPersonData _additionalData;
 	
 	
 	public PersonDefault(int id,
@@ -41,6 +33,7 @@ public class PersonDefault extends DefaultEntity implements Person
 	{
 		super(id, description);
 		initBasics(title, forename, surname, nickname, birthday, gender);
+		_additionalData = new AdditionalPersonData(id);
 	}
 
 	
@@ -60,21 +53,6 @@ public class PersonDefault extends DefaultEntity implements Person
 		_gender = new SimpleStringProperty(this, "Gender", gender);
 	}
 	
-	public void initLists( List<Adress> adresses, 
-			List<Phone> phones,
-			List<Identification> identifications, 
-			List<Category> categories,
-			List<Relationship> relationships)
-	{
-		_adresses = new SimpleListProperty<>(this, "Adresses", new ObservableListWrapper<>(adresses));
-		_phones = new SimpleListProperty<>(this, "Phones", new ObservableListWrapper<>(phones));
-		_identifications = new SimpleListProperty<>(this, "Identifications", new ObservableListWrapper<>(identifications));
-		_categories = new SimpleListProperty<>(this, "Categories", new ObservableListWrapper<>(categories));
-		_relationships = new SimpleListProperty<>(this, "Relationships", new ObservableListWrapper<>(relationships));
-	}
-
-	
-	
 	@Override public StringProperty titleProperty() { return _title; }
 
 	@Override public StringProperty forenameProperty() { return _forename; }
@@ -88,15 +66,15 @@ public class PersonDefault extends DefaultEntity implements Person
 	@Override public StringProperty genderProperty() { return _gender; }
 	
 	
-	@Override public ReadOnlyListProperty<Adress> adressesProperty() { return _adresses; }
+	@Override public ReadOnlyListProperty<Adress> adressesProperty() { return _additionalData.adressesProperty(); }
 	
-	@Override public ReadOnlyListProperty<Phone> phonesProperty() { return _phones; }
+	@Override public ReadOnlyListProperty<Phone> phonesProperty() { return _additionalData.phonesProperty(); }
 	
-	@Override public ReadOnlyListProperty<Identification> identificationsProperty() { return _identifications; }
+	@Override public ReadOnlyListProperty<Identification> identificationsProperty() { return _additionalData.identificationsProperty(); }
 	
-	@Override public ReadOnlyListProperty<Category> categoriesProperty() { return _categories; }
+	@Override public ReadOnlyListProperty<Category> categoriesProperty() { return _additionalData.categoriesProperty(); }
 	
-	@Override public ReadOnlyListProperty<Relationship> relationshipsProperty() { return _relationships; }
+	@Override public ReadOnlyListProperty<Relationship> relationshipsProperty() { return _additionalData.relationshipsProperty(); }
 
 	
 	@Override

@@ -36,14 +36,14 @@ public class PersonProxy implements Person
 	 */
 	private void validateListsAreInitialized()
 	{
-		if (_initializationValidated)
-			return;
-		
-		if (_originalPerson.adressesProperty() == null) //check for any list property if it is null
-		{
-			DALManager.getInstance().getPersonLoader().loadLists(_personId);
-		}
-		_initializationValidated = true;
+//		if (_initializationValidated)
+//			return;
+//		
+//		if (_originalPerson.adressesProperty() == null) //check for any list property if it is null
+//		{
+//			DALManager.getInstance().getPersonLoader().loadLists(_personId);
+//		}
+//		_initializationValidated = true;
 	}
 	
 	@Override

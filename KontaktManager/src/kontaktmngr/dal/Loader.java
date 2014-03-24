@@ -3,13 +3,17 @@ package kontaktmngr.dal;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Loader<E, S extends E> {
+/**
+ * Generic superclass for Loaders.
+ * Created to avoid code duplication
+ */
+public abstract class Loader<T> {
 	
-	protected Map<Integer, S> _objects = new HashMap<>();
+	protected Map<Integer, T> _objects = new HashMap<>();
 	
-	public E get(int id)
+	public T get(int id)
 	{
-		E o = _objects.get(id);
+		T o = _objects.get(id);
 		if (o != null)
 			return o;
 		
@@ -18,6 +22,9 @@ public abstract class Loader<E, S extends E> {
 		return o;
 	}
 
+	/**
+	 * This method should load the object specified by the id
+	 * and put it into the map.
+	 */
 	protected abstract void load(int id);
-	
 }
