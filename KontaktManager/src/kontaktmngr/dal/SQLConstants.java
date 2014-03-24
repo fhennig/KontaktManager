@@ -7,6 +7,7 @@ public final class SQLConstants {
 	public static final String CATEGORIES_TABLE = "categories";
 	public static final String MAPPINGS_TABLE = "mappings";
 	public static final String ADDRESSES_TABLE = "adresses";
+	public static final String PHONES_TABLE = "phones";
 
 	// Allgemeine SELECT Anfragen
 	public static final String SELECT_ALL_BY_TABLE_ID = "select * from ? where id = ? ;";
