@@ -1,20 +1,6 @@
 package kontaktmngr.model;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javafx.beans.property.StringProperty;
-
-import javax.swing.JOptionPane;
-
-import kontaktmngr.dal.DALManager;
-import kontaktmngr.dal.DatabaseCredentials;
 
 public interface Picture extends Entity {
 	

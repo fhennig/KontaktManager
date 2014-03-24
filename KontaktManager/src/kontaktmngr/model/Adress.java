@@ -14,6 +14,16 @@ public class Adress extends DefaultEntity
 	{
 		super(id, description);
 	}
+	
+	public Adress(int id, String description, String _street, int _housenumber,
+			int _postcode, String _city, String _country) {
+		super(id, description);
+		this._street = _street;
+		this._housenumber = _housenumber;
+		this._postcode = _postcode;
+		this._city = _city;
+		this._country = _country;
+	}
 
 
 

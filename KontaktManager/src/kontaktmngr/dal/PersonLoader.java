@@ -1,6 +1,7 @@
 package kontaktmngr.dal;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
@@ -18,7 +19,10 @@ public class PersonLoader extends Loader<Person>
 		try
 		{
 			Connection connection = DALManager.getInstance().getOpenConnnection();
-			ResultSet rs = connection.createStatement().executeQuery("select * from persons where id = " + id + ";");
+			PreparedStatement ps = connection.prepareStatement(SQLConstants.SELECT_ALL_BY_TABLE_ID);
+			ps.setString(1, SQLConstants.PERSONS_TABLE);
+			ps.setInt(2, id);
+			ResultSet rs = ps.executeQuery();
 			if (rs.next())
 			{
 				LocalDate birthday = null;
@@ -43,8 +47,7 @@ public class PersonLoader extends Loader<Person>
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new IllegalStateException(e);
 		}
 	}
 }
