@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="7.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="40.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" /><Label layoutX="56.0" layoutY="6.0" text="Prof. Dr. Max &quot;Maxi&quot; Mustermann" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" /><Label layoutX="56.0048828125" layoutY="27.5" text="TUM, Inf-Fak., Schach" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="5.0" />
+</children></AnchorPane>
