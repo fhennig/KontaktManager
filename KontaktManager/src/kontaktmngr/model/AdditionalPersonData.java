@@ -4,6 +4,8 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import kontaktmngr.dal.AdressListLoader;
+import kontaktmngr.dal.IdentificationListLoader;
+import kontaktmngr.dal.PhoneListLoader;
 
 public class AdditionalPersonData
 {
@@ -32,9 +34,19 @@ public class AdditionalPersonData
 		return _adresses; 
 	}
 	
-	public ReadOnlyListProperty<Phone> phonesProperty() { return _phones; } //TODO
+	public ReadOnlyListProperty<Phone> phonesProperty() { 
+		if (_phones == null)
+			_phones = new SimpleListProperty<>(this, "Phones", PhoneListLoader.getInstance().get(_personId));
+		
+		return _phones; 
+	}
 	
-	public ReadOnlyListProperty<Identification> identificationsProperty() { return _identifications; } //TODO
+	public ReadOnlyListProperty<Identification> identificationsProperty() { 
+		if (_identifications == null)
+			_identifications = new SimpleListProperty<>(this, "Identifications", IdentificationListLoader.getInstance().get(_personId));
+		
+		return _identifications; 
+	}
 	
 	public ReadOnlyListProperty<Category> categoriesProperty() { return _categories; } //TODO
 	
