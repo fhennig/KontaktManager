@@ -2,6 +2,7 @@ package kontaktmngr.model;
 
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.StringProperty;
+import kontaktmngr.dal.CategoryLoader;
 import kontaktmngr.dal.DALManager;
 import kontaktmngr.dal.Visitor;
 
@@ -18,7 +19,7 @@ public class CategoryProxy implements Category{
 	
 	private Category getOriginalCategory(){
 		if (_originalCategory == null)
-			_originalCategory = DALManager.getInstance().getCategoryLoader().get(_id);
+			_originalCategory = CategoryLoader.getInstance().get(_id);
 		
 		return _originalCategory;
 	}
@@ -29,7 +30,7 @@ public class CategoryProxy implements Category{
 		
 		if (_originalCategory.childrenProperty() == null) //check for any list property if it is null
 		{
-			DALManager.getInstance().getCategoryLoader().loadChildren(_originalCategory.getId());
+			CategoryLoader.getInstance().loadChildren(_originalCategory.getId());
 		}
 		_childrenInitialized = true;
 	}
@@ -40,7 +41,7 @@ public class CategoryProxy implements Category{
 		
 		if (_originalCategory.childrenProperty() == null) //check for any list property if it is null
 		{
-			DALManager.getInstance().getCategoryLoader().loadMembers(_originalCategory.getId());
+			CategoryLoader.getInstance().loadMembers(_originalCategory.getId());
 		}
 		_membersInitialized = true;
 	}
