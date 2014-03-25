@@ -56,7 +56,7 @@ public class KontaktManager
 //		System.out.println(c.descriptionProperty().get());
 		
 		//Test: SaveVisitor: Person
-		Person p = new PersonDefault(-1, "Prof. Dr.", "Max", "Mustermann", "Maxi", LocalDate.of(1970, 1, 1), "w", null);
+		Person p = new PersonDefault(7, "Prof. Dr.", "Max", "Mustermann", "Maxi", LocalDate.of(1970, 1, 1), "m", null);
 		p.accept(SaveVisitor.getInstance()); // Wahrscheinlich mache ich wieder alles falsch...
 	}
 }

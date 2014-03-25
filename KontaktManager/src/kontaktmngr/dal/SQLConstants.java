@@ -19,7 +19,7 @@ public final class SQLConstants {
 	public static final String INSERT_PERSON_BY_VALUES = "insert into " + PERSONS_TABLE + " (gender, title, forename, surname, nickname, birthday, description) values (?, ?, ?, ?, ?, ?, ?) returning id;";
 	
 	// UPDATE Anfragen
-	public static final String UPDATE_PERSON_BY_VALUES_ID = "update " + PERSONS_TABLE + "set gender = ?, title = ?, forename = ?, surname = ?, nickname = ?, birthday = ?, description = ? where id = ? ;";
+	public static final String UPDATE_PERSON_BY_VALUES_ID = "update " + PERSONS_TABLE + " set gender = ?, title = ?, forename = ?, surname = ?, nickname = ?, birthday = ?, description = ? where id = ? ;";
 	
 	// Categories
 	public static final String SELECT_ROOT_FROM_CATEGORIES_BY_COLUMNS = "select ? from "
