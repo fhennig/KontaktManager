@@ -1,5 +1,7 @@
 package kontaktmngr.model;
 
+import kontaktmngr.dal.Visitor;
+
 public class Identification extends DefaultEntity
 {
 	private final String _type;
@@ -29,5 +31,13 @@ public class Identification extends DefaultEntity
 	public void setIdentification(String identification)
 	{
 		_identification = identification;
+	}
+
+
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
 	}
 }

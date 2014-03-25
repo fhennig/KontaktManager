@@ -7,6 +7,7 @@ import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import kontaktmngr.dal.Visitor;
 
 public class PersonDefault extends DefaultEntity implements Person
 {
@@ -81,5 +82,12 @@ public class PersonDefault extends DefaultEntity implements Person
 	public String toString()
 	{
 		return getId() + ": " + _forename + " " + _surname;
+	}
+
+
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 }

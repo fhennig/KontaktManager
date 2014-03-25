@@ -3,6 +3,7 @@ package kontaktmngr.model;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.StringProperty;
 import kontaktmngr.dal.DALManager;
+import kontaktmngr.dal.Visitor;
 
 public class CategoryProxy implements Category{
 
@@ -69,6 +70,12 @@ public class CategoryProxy implements Category{
 	public ReadOnlyListProperty<Person> membersProperty() {
 		validateMembersAreInitialized();
 		return getOriginalCategory().membersProperty();
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

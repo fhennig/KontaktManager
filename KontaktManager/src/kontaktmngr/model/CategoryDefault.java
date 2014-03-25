@@ -9,6 +9,7 @@ import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import kontaktmngr.dal.Visitor;
 
 public class CategoryDefault extends DefaultEntity implements Category{
 
@@ -42,6 +43,12 @@ public class CategoryDefault extends DefaultEntity implements Category{
 	@Override
 	public ReadOnlyListProperty<Person> membersProperty() {
 		return members;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

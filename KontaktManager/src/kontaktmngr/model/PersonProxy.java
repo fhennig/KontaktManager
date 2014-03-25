@@ -1,10 +1,12 @@
 package kontaktmngr.model;
 
 import java.time.LocalDate;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.StringProperty;
 import kontaktmngr.dal.DALManager;
+import kontaktmngr.dal.Visitor;
 
 public class PersonProxy implements Person
 {
@@ -134,5 +136,12 @@ public class PersonProxy implements Person
 	public String toString()
 	{
 		return "PersonProxy for: " + getOriginalPerson().toString();
+	}
+
+
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
 	}
 }

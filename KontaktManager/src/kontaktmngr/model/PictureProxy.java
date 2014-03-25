@@ -2,6 +2,7 @@ package kontaktmngr.model;
 
 import javafx.beans.property.StringProperty;
 import kontaktmngr.dal.DALManager;
+import kontaktmngr.dal.Visitor;
 
 public class PictureProxy implements Picture{
 
@@ -33,6 +34,12 @@ public class PictureProxy implements Picture{
 	@Override
 	public StringProperty filenameProperty() {
 		return getOriginalPerson().filenameProperty();
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

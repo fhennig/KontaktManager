@@ -1,5 +1,7 @@
 package kontaktmngr.model;
 
+import kontaktmngr.dal.Visitor;
+
 public class Phone extends DefaultEntity
 {
 	private long _number;
@@ -22,5 +24,13 @@ public class Phone extends DefaultEntity
 	public void setNumber(long number)
 	{
 		_number = number;
+	}
+
+
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
 	}
 }

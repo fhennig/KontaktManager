@@ -1,5 +1,7 @@
 package kontaktmngr.model;
 
+import kontaktmngr.dal.Visitor;
+
 public class Adress extends DefaultEntity
 {
 	private String _street;
@@ -75,5 +77,11 @@ public class Adress extends DefaultEntity
 	public void setCountry(String country)
 	{
 		_country = country;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
 	}
 }

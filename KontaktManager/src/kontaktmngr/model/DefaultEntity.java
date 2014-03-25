@@ -3,7 +3,7 @@ package kontaktmngr.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class DefaultEntity implements Entity
+public abstract class DefaultEntity implements Entity
 {
 	private final int _id;
 	private StringProperty _description;

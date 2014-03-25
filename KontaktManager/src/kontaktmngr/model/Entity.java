@@ -1,6 +1,7 @@
 package kontaktmngr.model;
 
 import javafx.beans.property.StringProperty;
+import kontaktmngr.dal.Visitor;
 
 public interface Entity
 {	
@@ -9,4 +10,5 @@ public interface Entity
 	public int getId();
 	
 	public StringProperty descriptionProperty();
+	public void accept(Visitor visitor);
 }

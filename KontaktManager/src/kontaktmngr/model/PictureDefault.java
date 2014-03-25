@@ -2,6 +2,7 @@ package kontaktmngr.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import kontaktmngr.dal.Visitor;
 
 public class PictureDefault extends DefaultEntity implements Picture{
 
@@ -15,6 +16,12 @@ public class PictureDefault extends DefaultEntity implements Picture{
 	@Override
 	public StringProperty filenameProperty() {
 		return _filenameProperty;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

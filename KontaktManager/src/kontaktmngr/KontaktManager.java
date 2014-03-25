@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Iterator;
 
 import javax.swing.JOptionPane;
@@ -17,7 +18,10 @@ import ezvcard.property.Address;
 import ezvcard.property.Telephone;
 import kontaktmngr.dal.DALManager;
 import kontaktmngr.dal.DatabaseCredentials;
+import kontaktmngr.dal.SaveVisitor;
 import kontaktmngr.model.Category;
+import kontaktmngr.model.Person;
+import kontaktmngr.model.PersonDefault;
 
 /**
  * This class contains only the main method.
@@ -25,49 +29,34 @@ import kontaktmngr.model.Category;
 public class KontaktManager
 {	
 	public static void main(String[] args) throws SQLException
-	{
-		try {			
-			VCard vcard = Ezvcard.parse(new File("C:\\Users\\Chaoran\\Desktop\\person.vcf")).first();
-			if(vcard.getAddresses() != null){
-				for (Address a : vcard.getAddresses()) {
-					System.out.println(a.getStreetAddress());
-				}
-			}
+	{		
+		boolean connectionEstablished = false;
+		
+		while (!connectionEstablished)
+		{
+			String host = JOptionPane.showInputDialog("Server-IP");
+			String user = JOptionPane.showInputDialog("Username");
+			String password = JOptionPane.showInputDialog("Password");
 
-			for (Telephone t : vcard.getTelephoneNumbers()) {
-				System.out.println(t.getText());
+			DatabaseCredentials dbCred = new DatabaseCredentials(host, user,
+					password);
+
+			try
+			{
+				DALManager.init(dbCred);
+				connectionEstablished = true;
 			}
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			catch (SQLException ignored)    { JOptionPane.showMessageDialog(null, "Database connection failed!");}
+			catch (PropertyVetoException e) { JOptionPane.showMessageDialog(null, "Database driver could not be loaded!"); }
 		}
 		
 		
-//		boolean connectionEstablished = false;
-//		
-//		while (!connectionEstablished)
-//		{
-//			String host = JOptionPane.showInputDialog("Server-IP");
-//			String user = JOptionPane.showInputDialog("Username");
-//			String password = JOptionPane.showInputDialog("Password");
-//
-//			DatabaseCredentials dbCred = new DatabaseCredentials(host, user,
-//					password);
-//
-//			try
-//			{
-//				DALManager.init(dbCred);
-//				connectionEstablished = true;
-//			}
-//			catch (SQLException ignored)    { JOptionPane.showMessageDialog(null, "Database connection failed!");}
-//			catch (PropertyVetoException e) { JOptionPane.showMessageDialog(null, "Database driver could not be loaded!"); }
-//		}
-//		
-//		
 //		//Test: Kategorienübersicht
 //		Category c = DALManager.getInstance().getCategoryLoader().loadAll();
 //		System.out.println(c.descriptionProperty().get());
+		
+		//Test: SaveVisitor: Person
+		Person p = new PersonDefault(-1, "Prof. Dr.", "Max", "Mustermann", "Maxi", LocalDate.of(1970, 1, 1), "w", null);
+		p.accept(SaveVisitor.getInstance()); // Wahrscheinlich mache ich wieder alles falsch...
 	}
 }
