@@ -17,7 +17,6 @@ public class DALManager
 	
 	private final DataSource _dataSource;
 	private final PersonLoader _personLoader = new PersonLoader();
-	private final CategoryLoader _categoryLoader = new CategoryLoader();
 	private final PictureLoader _pictureLoader = new PictureLoader();
 	
 	
@@ -59,11 +58,6 @@ public class DALManager
 	public PersonLoader getPersonLoader()
 	{
 		return _personLoader;
-	}
-	
-	public CategoryLoader getCategoryLoader()
-	{
-		return _categoryLoader;
 	}
 
 	public PictureLoader getPictureLoader() {

@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.sun.javafx.collections.ObservableListWrapper;
+
+import javafx.collections.ObservableList;
 import kontaktmngr.model.Category;
 import kontaktmngr.model.CategoryDefault;
 import kontaktmngr.model.Person;
@@ -13,6 +17,17 @@ import kontaktmngr.model.PersonProxy;
 
 public class CategoryLoader extends Loader<Category>{
 
+	private static CategoryLoader _instance;
+	
+	private CategoryLoader(){ };
+	
+	public static CategoryLoader getInstance() {
+		if (_instance == null)
+			_instance = new CategoryLoader();
+
+		return _instance;
+	}
+	
 	@Override
 	protected void load(int id) {
 		try
@@ -31,7 +46,26 @@ public class CategoryLoader extends Loader<Category>{
 			}
 		} catch (SQLException e)
 		{
-			e.printStackTrace();
+			throw new IllegalStateException(e);
+		}
+	}
+	
+
+	public ObservableList<Category> getCategoriesOf(int personId){
+		try
+		{
+			Connection connection = DALManager.getInstance().getOpenConnnection();
+			PreparedStatement ps = connection.prepareStatement(SQLConstants.SELECT_CATEGORYID_OF_PERSON_BY_ID);
+			ps.setInt(1, personId);
+			ResultSet rs = ps.executeQuery();
+			List<Category> categories = new ArrayList<Category>();
+			
+			while(rs.next()){
+				categories.add(get(rs.getInt(1)));
+			}
+			return new ObservableListWrapper<Category>(categories);
+		} catch (SQLException e)
+		{
 			throw new IllegalStateException(e);
 		}
 	}

@@ -4,6 +4,7 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import kontaktmngr.dal.AdressListLoader;
+import kontaktmngr.dal.CategoryLoader;
 import kontaktmngr.dal.IdentificationListLoader;
 import kontaktmngr.dal.PhoneListLoader;
 
@@ -22,7 +23,6 @@ public class AdditionalPersonData
 	private ListProperty<Adress> _adresses = null;
 	private ListProperty<Phone> _phones = null;
 	private ListProperty<Identification> _identifications = null;
-	private ListProperty<Category> _categories = null;
 	private ListProperty<Relationship> _relationships = null;
 	
 
@@ -48,7 +48,13 @@ public class AdditionalPersonData
 		return _identifications; 
 	}
 	
-	public ReadOnlyListProperty<Category> categoriesProperty() { return _categories; } //TODO
+	/**
+	 * Returns the categories of this person by asking the database everytime.
+	 * @return
+	 */
+	public ReadOnlyListProperty<Category> categoriesProperty() { 
+		return new SimpleListProperty<>(this, "Categories", CategoryLoader.getInstance().getCategoriesOf(_personId)); 
+	}
 	
 	public ReadOnlyListProperty<Relationship> relationshipsProperty() { return _relationships; } //TODO
 

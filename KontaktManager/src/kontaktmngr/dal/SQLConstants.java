@@ -12,15 +12,19 @@ public final class SQLConstants {
 
 	// Allgemeine SELECT Anfragen
 	public static final String SELECT_ALL_BY_TABLE_ID = "select * from ? where id = ? ;";
-	public static final String SELECT_BY_COLUMNS_TABLE_ID = "select ? from ? where id = ? ;";
 	public static final String SELECT_ALL_WHERE_ISPERSONID_BY_TABLE_ID = "select * from ? where person = ? ;";
-	
+	public static final String SELECT_BY_COLUMNS_TABLE_ID = "select ? from ? where id = ? ;";
+
 	// INSERT INTO Anfragen
-	public static final String INSERT_PERSON_BY_VALUES = "insert into " + PERSONS_TABLE + " (gender, title, forename, surname, nickname, birthday, description) values (?, ?, ?, ?, ?, ?, ?) returning id;";
-	
+	public static final String INSERT_PERSON_BY_VALUES = "insert into "
+			+ PERSONS_TABLE
+			+ " (gender, title, forename, surname, nickname, birthday, description) values (?, ?, ?, ?, ?, ?, ?) returning id;";
+
 	// UPDATE Anfragen
-	public static final String UPDATE_PERSON_BY_VALUES_ID = "update " + PERSONS_TABLE + " set gender = ?, title = ?, forename = ?, surname = ?, nickname = ?, birthday = ?, description = ? where id = ? ;";
-	
+	public static final String UPDATE_PERSON_BY_VALUES_ID = "update "
+			+ PERSONS_TABLE
+			+ " set gender = ?, title = ?, forename = ?, surname = ?, nickname = ?, birthday = ?, description = ? where id = ? ;";
+
 	// Categories
 	public static final String SELECT_ROOT_FROM_CATEGORIES_BY_COLUMNS = "select ? from "
 			+ CATEGORIES_TABLE + " where lft = 1;";
@@ -49,4 +53,7 @@ public final class SQLConstants {
 			+ MAPPINGS_TABLE
 			+ " m"
 			+ "where m.person = p.id and m.category = c.id and c.id = ? ;";
+	public static final String SELECT_CATEGORYID_OF_PERSON_BY_ID = "select p.id "
+			+ "from " + PERSONS_TABLE + " p, " + CATEGORIES_TABLE + " c, " + MAPPINGS_TABLE + " m "
+			+ "where p.id = m.person and c.id = m.category and c.id = ? ;";
 }
