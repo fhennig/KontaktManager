@@ -7,6 +7,7 @@ import kontaktmngr.dal.AdressListLoader;
 import kontaktmngr.dal.CategoryLoader;
 import kontaktmngr.dal.IdentificationListLoader;
 import kontaktmngr.dal.PhoneListLoader;
+import kontaktmngr.dal.RelationshipLoader;
 
 public class AdditionalPersonData
 {
@@ -23,7 +24,6 @@ public class AdditionalPersonData
 	private ListProperty<Adress> _adresses = null;
 	private ListProperty<Phone> _phones = null;
 	private ListProperty<Identification> _identifications = null;
-	private ListProperty<Relationship> _relationships = null;
 	
 
 	public ReadOnlyListProperty<Adress> adressesProperty()
@@ -49,13 +49,19 @@ public class AdditionalPersonData
 	}
 	
 	/**
-	 * Returns the categories of this person by asking the database everytime.
+	 * Returns the categories of this person by asking the database every time.
 	 * @return
 	 */
 	public ReadOnlyListProperty<Category> categoriesProperty() { 
 		return new SimpleListProperty<>(this, "Categories", CategoryLoader.getInstance().getCategoriesOf(_personId)); 
 	}
 	
-	public ReadOnlyListProperty<Relationship> relationshipsProperty() { return _relationships; } //TODO
+	/**
+	 * Returns the relationships of this person by asking the database every time.
+	 * @return
+	 */
+	public ReadOnlyListProperty<Relationship> relationshipsProperty() { 
+		return new SimpleListProperty<>(this, "Relationships", RelationshipLoader.getInstance().getRelationshipsOf(_personId)); 
+	}
 
 }

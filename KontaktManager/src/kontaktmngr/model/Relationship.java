@@ -1,19 +1,11 @@
 package kontaktmngr.model;
 
-import kontaktmngr.dal.Visitor;
+import javafx.beans.property.ObjectProperty;
 
-public class Relationship extends DefaultEntity
+public interface Relationship extends Entity
 {
 
-	public Relationship(int id, String description)
-	{
-		super(id, description);
-	}
-
-	@Override
-	public void accept(Visitor visitor) {
-		// TODO Auto-generated method stub
-		
-	}
+	public ObjectProperty<Person> person1Property();
+	public ObjectProperty<Person> person2Property();
 
 }

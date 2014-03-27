@@ -9,6 +9,7 @@ public final class SQLConstants {
 	public static final String ADDRESSES_TABLE = "adresses";
 	public static final String PHONES_TABLE = "phones";
 	public static final String IDENTIFICATION_TABLE = "identifications";
+	public static final String RELATIONSHIP_TABLE = "relationships";
 
 	// Allgemeine SELECT Anfragen
 	public static final String SELECT_ALL_BY_TABLE_ID = "select * from ? where id = ? ;";
@@ -25,6 +26,9 @@ public final class SQLConstants {
 			+ PERSONS_TABLE
 			+ " set gender = ?, title = ?, forename = ?, surname = ?, nickname = ?, birthday = ?, description = ? where id = ? ;";
 
+	// Relationships
+	public static final String SELECT_RELATIONSHIPIDID_OF_PERSON_BY_ID = "select r.id from " + PERSONS_TABLE + " p, " + RELATIONSHIP_TABLE + " r where (r.person1 = p.id or r.person2 = p.id) and p.id = ? ;";
+	
 	// Categories
 	public static final String SELECT_ROOT_FROM_CATEGORIES_BY_COLUMNS = "select ? from "
 			+ CATEGORIES_TABLE + " where lft = 1;";
