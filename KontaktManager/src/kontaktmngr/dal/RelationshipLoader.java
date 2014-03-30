@@ -33,8 +33,7 @@ public class RelationshipLoader extends Loader<Relationship> {
 			Connection connection = DALManager.getInstance()
 					.getOpenConnnection();
 			PreparedStatement ps = connection
-					.prepareStatement(SQLConstants.SELECT_ALL_BY_TABLE_ID);
-			ps.setString(1, SQLConstants.RELATIONSHIP_TABLE);
+					.prepareStatement(SQLConstants.select_all_by_id(SQLConstants.RELATIONSHIP_TABLE));
 			ps.setInt(2, id);
 
 			ResultSet rs = ps.executeQuery();

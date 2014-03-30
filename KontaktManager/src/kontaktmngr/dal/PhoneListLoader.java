@@ -31,8 +31,7 @@ public class PhoneListLoader extends Loader<ObservableList<Phone>> {
 			Connection connection = DALManager.getInstance()
 					.getOpenConnnection();
 			PreparedStatement ps = connection
-					.prepareStatement(SQLConstants.SELECT_ALL_WHERE_ISPERSONID_BY_TABLE_ID);
-			ps.setString(1, SQLConstants.PHONES_TABLE);
+					.prepareStatement(SQLConstants.select_all_where_ispersonid_by_id(SQLConstants.PHONES_TABLE));
 			ps.setInt(2, id);
 
 			List<Phone> phones = new ArrayList<Phone>();

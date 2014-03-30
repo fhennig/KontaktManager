@@ -19,9 +19,8 @@ public class PersonLoader extends Loader<Person>
 		try
 		{
 			Connection connection = DALManager.getInstance().getOpenConnnection();
-			PreparedStatement ps = connection.prepareStatement(SQLConstants.SELECT_ALL_BY_TABLE_ID);
-			ps.setString(1, SQLConstants.PERSONS_TABLE);
-			ps.setInt(2, id);
+			PreparedStatement ps = connection.prepareStatement(SQLConstants.select_all_by_id(SQLConstants.PERSONS_TABLE));
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next())
 			{

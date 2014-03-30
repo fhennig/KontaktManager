@@ -33,10 +33,8 @@ public class CategoryLoader extends Loader<Category>{
 		try
 		{
 			Connection connection = DALManager.getInstance().getOpenConnnection();
-			PreparedStatement ps = connection.prepareStatement(SQLConstants.SELECT_BY_COLUMNS_TABLE_ID);
-			ps.setString(1, "id, title, description");
-			ps.setString(2, SQLConstants.CATEGORIES_TABLE);
-			ps.setInt(3, id);
+			PreparedStatement ps = connection.prepareStatement(SQLConstants.select_by_ID("id, title, description", SQLConstants.CATEGORIES_TABLE));
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
 				CategoryDefault category = new CategoryDefault(id, rs.getString(2), rs.getString(3));
@@ -104,9 +102,8 @@ public class CategoryLoader extends Loader<Category>{
 			Connection connection = DALManager.getInstance().getOpenConnnection();
 			
 			ArrayList<Category> children = new ArrayList<Category>();
-			PreparedStatement ps = connection.prepareStatement(SQLConstants.SELECT_CHILDREN_FROM_CATEGORIES_BY_cCOLUMNS_ID);
-			ps.setString(1, "c.id, c.title, c.description");
-			ps.setInt(2, id);
+			PreparedStatement ps = connection.prepareStatement(SQLConstants.SELECT_CHILDREN_FROM_CATEGORIES_BY_ID);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				CategoryDefault child = new CategoryDefault(rs.getInt(1), rs.getString(2), rs.getString(3));

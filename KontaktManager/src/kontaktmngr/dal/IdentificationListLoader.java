@@ -10,7 +10,6 @@ import java.util.List;
 import com.sun.javafx.collections.ObservableListWrapper;
 
 import javafx.collections.ObservableList;
-import kontaktmngr.model.Adress;
 import kontaktmngr.model.Identification;
 
 public class IdentificationListLoader extends
@@ -33,9 +32,8 @@ public class IdentificationListLoader extends
 			Connection connection = DALManager.getInstance()
 					.getOpenConnnection();
 			PreparedStatement ps = connection
-					.prepareStatement(SQLConstants.SELECT_ALL_WHERE_ISPERSONID_BY_TABLE_ID);
-			ps.setString(1, SQLConstants.IDENTIFICATION_TABLE);
-			ps.setInt(2, id);
+					.prepareStatement(SQLConstants.select_all_where_ispersonid_by_id(SQLConstants.IDENTIFICATION_TABLE));
+			ps.setInt(1, id);
 
 			List<Identification> identifications = new ArrayList<Identification>();
 
